@@ -1,0 +1,36 @@
+[
+    {
+        "title":"Enter value of Pi :?",
+        "options":[3.14,4.78,4.0,6.9],
+        "Answer":"A"
+
+    }
+    ,
+    {
+        "title":"Enter value of A ascii value :?",
+        "options":[54,78,64,90],
+        "Answer":"C"
+
+    }
+    ,
+    {
+        "title":"Enter value of 1+3 :?",
+        "options":[3,7,6,4],
+        "Answer":"D"
+
+    },
+    {
+        "title":"Enter value of '2'+'3':?",
+        "options":[23,7,5,14],
+        "Answer":"A"
+
+    },
+    {
+        "title":"Enter a Non Negative Number:?",
+        "options":[-3,-7,6,-4],
+        "Answer":"C"
+
+    }
+
+
+]
