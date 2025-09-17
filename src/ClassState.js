@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-/*class ClassState extends React.Component
+class ClassState extends React.Component
 {
     constructor()
     {
@@ -18,8 +18,8 @@ import React,{useState} from 'react';
             </>
         )
     }
-}*/
-function FuncState()
+}
+/*function FuncState()
 {
     const [count,setCount]=useState(1);
     const Change=()=>{
@@ -31,6 +31,6 @@ function FuncState()
           <button onClick={Change}>Mul by 3</button>
 
         </>
-    )
+    )*/
 }
 export default FuncState;
