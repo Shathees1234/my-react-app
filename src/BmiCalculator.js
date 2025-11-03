@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
-function Bmi()
+function BmiCalculator()
 {
-     const [weight,setWeight]=useState("");
+    const [weight,setWeight]=useState("");
     const [height,setHeight]=useState("");
     var [bmi,setBmi]=useState(null);
     var [status,setStatus]=useState();
