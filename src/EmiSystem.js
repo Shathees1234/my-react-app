@@ -1,6 +1,6 @@
 import { blueGrey } from '@mui/material/colors';
 import React,{useState} from 'react';
-function Emi()
+function EmiSystem()
 {
     const [principle,setPrinciple]=useState();
     const [interest,setInterest]=useState();
