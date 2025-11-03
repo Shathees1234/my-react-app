@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-function Dictionary()
+function DictionaryApp()
 {
     const [ini,setIni]=useState("");
     const [data,setData]=useState([]);
