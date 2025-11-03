@@ -1,39 +1,79 @@
-import React,{useEffect, useState} from "react";
-import Axios from 'axios';
-function WeatherApp()
-{
-    const [city,setCity]=useState("");
-    const [data,setData]=useState([]);
-    const Change=(e)=>{
-        setCity(e.target.value)
+import React, { useState } from "react";
+import Axios from "axios";
 
+function WeatherApp() {
+  const [city, setCity] = useState("");
+  const [weather, setWeather] = useState(null);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => setCity(e.target.value);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!city) return;
+
+    try {
+      const res = await Axios.get(
+        https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=643d6c8f0049d7732aab38687b0f0807&units=metric
+      );
+      
+      setWeather({
+        name: res.data.name,
+        temp: res.data.main.temp,
+        description: res.data.weather[0].description,
+        humidity: res.data.main.humidity,
+        wind: res.data.wind.speed,
+        icon: https://openweathermap.org/img/wn/${res.data.weather[0].icon}@2x.png
+      });
+
+      setError("");
+      setCity("");
+    } catch (err) {
+      setError("City not found!");
+      setWeather(null);
     }
-    const Submit=async(e)=>{
-        e.preventDefault();
-        Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=643d6c8f0049d7732aab38687b0f0807&units=metric`).then((res)=>setData("Temparature at"+" "+city+"  "+res.data.list[0].main.temp+" "+" degree celcius"));
-        setCity("");
-    }
-   
-    return(
-        <>
-          
-        <div style={{border:"3px solid lightblue",boxShadow:"1px 1px 2px 3px lightgreen",marginLeft:"460px",width:"400px",padding:"30px",backgroundColor:"silver"}}>
-        <h1 style={{fontSize:"35px",color:"brown",textAlign:"center",marginTop:"2px",backgroundColor:"white"}}>Wheather App</h1><br/>
-        <form onSubmit={Submit}>
-            <input type="text" placeholder="Enter City" onChange={Change} value={city} style={{fontSize:"30px",boxShadow:"2px 2px 3px 4px aqua",boxShadow:"1px 1px 4px 3px lightgreen"}}/><br/><br/><br/>
-            <button type="submit" style={{fontSize:"25px",backgroundColor:"aqua",color:"brown"}}>Get Temparature</button><br/><br/><br/>
-        </form>
-        <img src="https://th.bing.com/th/id/R.dc404c7c3562dcecd7b681638236ec4b?rik=TyBtVyC9zFcqag&riu=http%3a%2f%2fmedia.idownloadblog.com%2fwp-content%2fuploads%2f2013%2f12%2fiOS-7-weather-app-icon.png&ehk=hpuVSBLGzEOV6n8HGhGAvbvZ8VTIV2M04qAdwp%2brKX8%3d&risl=&pid=ImgRaw&r=0" alt="img not found" width="50px" height="45px" />
-        <h1 style={{display:"inline"}}>{data} &nbsp;</h1>
+  };
+
+  return (
+    <div style={{ 
+      border: "3px solid lightblue", 
+      boxShadow: "1px 1px 5px 3px lightgreen", 
+      margin: "50px auto", 
+      width: "400px", 
+      padding: "30px", 
+      backgroundColor: "#f0f0f0", 
+      textAlign: "center",
+      borderRadius: "10px"
+    }}>
+      <h1 style={{ color: "brown" }}>Weather App</h1>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter City"
+          value={city}
+          onChange={handleChange}
+          style={{ fontSize: "20px", padding: "5px", width: "70%" }}
+        />
+        <button type="submit" style={{ fontSize: "18px", marginLeft: "10px" }}>
+          Get Weather
+        </button>
+      </form>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {weather && (
+        <div style={{ marginTop: "20px" }}>
+          <h2>{weather.name}</h2>
+          <img src={weather.icon} alt="weather icon" />
+          <p>Temperature: {weather.temp} °C</p>
+          <p>Condition: {weather.description}</p>
+          <p>Humidity: {weather.humidity}%</p>
+          <p>Wind Speed: {weather.wind} m/s</p>
         </div>
-      
-      
-    
-
-
-        </>
-    )
+      )}
+    </div>
+  );
 }
-export default Wheather;
 
-
+export default WeatherApp;
