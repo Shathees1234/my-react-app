@@ -1,15 +1,14 @@
 import React,{useState} from "react";
 import Questions from './Question.json';
 import Qus from './Qus'
-function Quizs()
+function QuizApp()
 {
     const [total,setTotal]=useState(0);
     const Sub=(a)=>{
       
         setTotal( total+a)
       
-        
-    }
+}
     const Ok=(e)=>{
         e.preventDefault();
         alert("The Total Score Is:"+total+"/5")
