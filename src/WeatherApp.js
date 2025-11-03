@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
 import Axios from 'axios';
-function Wheather()
+function WeatherApp()
 {
     const [city,setCity]=useState("");
     const [data,setData]=useState([]);
